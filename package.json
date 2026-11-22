@@ -1,0 +1,124 @@
+{
+  "name": "waza",
+  "displayName": "Waza - One-Click Skill Compiler",
+  "description": "Compile an explicitly selected AI workflow into a reusable Agent Skill with a deterministic script, preview, and validation gates.",
+  "version": "0.1.0",
+  "publisher": "ShunsukeF",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/furukawa658/waza.git"
+  },
+  "homepage": "https://github.com/furukawa658/waza#readme",
+  "bugs": {
+    "url": "https://github.com/furukawa658/waza/issues"
+  },
+  "engines": {
+    "vscode": "^1.102.0"
+  },
+  "icon": "assets/icon.png",
+  "main": "./dist/extension.js",
+  "extensionKind": [
+    "ui"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": false
+    }
+  },
+  "categories": [
+    "AI",
+    "Developer Tools",
+    "Other"
+  ],
+  "keywords": [
+    "agent skills",
+    "copilot chat",
+    "skill",
+    "automation",
+    "workflow",
+    "bun",
+    "rust",
+    "zig"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "scripts": {
+    "build": "node scripts/build-icon.mjs && node scripts/build.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "check": "npm run typecheck && npm run test && npm run build",
+    "package": "npm run check && vsce package --out dist"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "waza.compileSkill",
+        "title": "Waza: Compile Workflow to Skill"
+      },
+      {
+        "command": "waza.tryLastSkill",
+        "title": "Waza: Try Last Skill"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "waza.compileSkill",
+        "key": "ctrl+alt+w",
+        "mac": "cmd+alt+w"
+      },
+      {
+        "command": "waza.tryLastSkill",
+        "key": "ctrl+alt+enter",
+        "mac": "cmd+alt+enter"
+      }
+    ],
+    "configuration": {
+      "title": "Waza",
+      "properties": {
+        "waza.preferredRuntime": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "bun",
+            "node",
+            "python",
+            "powershell",
+            "rust",
+            "zig"
+          ],
+          "default": "auto",
+          "scope": "machine-overridable",
+          "description": "Preferred runtime for generated skill scripts. Auto selects from installed runtimes based on the workflow."
+        },
+        "waza.maxInputCharacters": {
+          "type": "number",
+          "default": 60000,
+          "minimum": 10000,
+          "maximum": 200000,
+          "description": "Maximum selected workflow text sent to the language model after redaction."
+        },
+        "waza.showRiskWarnings": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show generated-script risk warnings before saving."
+        }
+      }
+    }
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "@types/node": "^24.0.0",
+    "@types/vscode": "^1.102.0",
+    "@vscode/vsce": "^4.1.1",
+    "esbuild": "^0.28.2",
+    "typescript": "^5.8.0",
+    "vitest": "^5.1.1"
+  },
+  "overrides": {
+    "@vscode/vsce": {
+      "minimatch": "11.0.1"
+    }
+  }
+}
