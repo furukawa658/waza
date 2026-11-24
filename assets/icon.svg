@@ -1,32 +1,52 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" fill="none">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#08111f"/>
-      <stop offset="0.55" stop-color="#142a3a"/>
-      <stop offset="1" stop-color="#211b37"/>
+    <clipPath id="frame"><rect x="6" y="6" width="244" height="244" rx="48" /></clipPath>
+    <linearGradient id="sky" x1="128" y1="6" x2="128" y2="250" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#11162F" />
+      <stop offset="0.38" stop-color="#4B315B" />
+      <stop offset="0.66" stop-color="#C55D73" />
+      <stop offset="0.84" stop-color="#F2A36D" />
+      <stop offset="1" stop-color="#2B1B39" />
     </linearGradient>
-    <linearGradient id="cyan" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#72f5e8"/>
-      <stop offset="1" stop-color="#08aeb2"/>
+    <linearGradient id="mark" x1="48" y1="88" x2="210" y2="178" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#33E6D2" />
+      <stop offset="0.52" stop-color="#E9FFF7" />
+      <stop offset="1" stop-color="#FFB45C" />
     </linearGradient>
-    <linearGradient id="amber" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#ffe28a"/>
-      <stop offset="1" stop-color="#e88827"/>
-    </linearGradient>
-    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%">
-      <feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#000" flood-opacity="0.45"/>
+    <filter id="glow" x="-35%" y="-35%" width="170%" height="170%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
     </filter>
   </defs>
-  <rect width="256" height="256" rx="42" fill="url(#bg)"/>
-  <circle cx="42" cy="40" r="3" fill="#bff7ef" opacity="0.7"/>
-  <circle cx="212" cy="52" r="2" fill="#ffd98b" opacity="0.7"/>
-  <circle cx="220" cy="202" r="3" fill="#bff7ef" opacity="0.45"/>
-  <g transform="rotate(-7 128 128)" filter="url(#shadow)">
-    <rect x="30" y="83" width="94" height="94" rx="18" fill="#075f72"/>
-    <rect x="30" y="72" width="94" height="94" rx="18" fill="url(#cyan)" stroke="#b7fff7" stroke-width="4"/>
-    <path d="M81 86 58 124h20l-8 29 28-41H79l2-26Z" fill="#07303d"/>
-    <rect x="132" y="83" width="94" height="94" rx="18" fill="#8f4d1e"/>
-    <rect x="132" y="72" width="94" height="94" rx="18" fill="url(#amber)" stroke="#fff0bb" stroke-width="4"/>
-    <path d="m164 94 38 25-38 25v-50Z" fill="#3e2430"/>
+
+  <g clip-path="url(#frame)">
+    <rect x="6" y="6" width="244" height="244" fill="url(#sky)" />
+    <circle cx="194" cy="108" r="29" fill="#FFD69A" opacity="0.13" />
+    <circle cx="194" cy="108" r="13" fill="#FFE7B0" opacity="0.95" />
+    <g fill="#FFF1DC" opacity="0.68">
+      <circle cx="54" cy="48" r="2" /><circle cx="88" cy="72" r="1.4" /><circle cx="144" cy="38" r="1.2" />
+      <circle cx="220" cy="92" r="1.5" /><circle cx="36" cy="103" r="1.2" />
+    </g>
+    <path d="M6 172 V142 H28 V118 H48 V144 H66 V102 H91 V138 H112 V124 H136 V150 H156 V110 H178 V144 H198 V128 H220 V154 H242 V118 H250 V250 H6 Z" fill="#261B38" />
+    <g fill="#F6C58E" opacity="0.72">
+      <rect x="72" y="116" width="6" height="10" /><rect x="83" y="116" width="6" height="10" />
+      <rect x="162" y="124" width="6" height="10" /><rect x="173" y="124" width="6" height="10" />
+      <rect x="226" y="140" width="6" height="10" />
+    </g>
+    <path d="M6 204 Q56 188 112 204 T250 198 V250 H6 Z" fill="#101528" />
+    <g stroke="#9D6686" stroke-width="2" fill="none" opacity="0.9">
+      <path d="M34 214 V130 L52 116 L70 130 V214" /><path d="M23 148 H81 M28 157 H76" />
+      <path d="M218 214 V136 L202 122 L188 136 V214" /><path d="M180 152 H228 M186 161 H222" />
+    </g>
+    <g filter="url(#glow)" stroke="url(#mark)" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M48 94 L82 164 L111 112 L139 164 L198 88" stroke-width="18" />
+      <circle cx="82" cy="164" r="5" fill="url(#mark)" stroke-width="0" />
+      <circle cx="139" cy="164" r="5" fill="url(#mark)" stroke-width="0" />
+    </g>
+    <path d="M48 94 L82 164 L111 112 L139 164 L198 88" stroke="#F7FFF9" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.88" />
+    <path d="M171 151 H211" stroke="#33E6D2" stroke-width="5" stroke-linecap="round" />
+    <path d="M186 166 H220" stroke="#FFB45C" stroke-width="5" stroke-linecap="round" />
   </g>
+  <rect x="6" y="6" width="244" height="244" rx="48" stroke="#A85D7A" stroke-width="3" />
+  <rect x="13" y="13" width="230" height="230" rx="41" stroke="#E4FFF2" stroke-opacity="0.18" />
 </svg>
