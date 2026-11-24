@@ -2,6 +2,8 @@
 
 [日本語版](README.ja.md)
 
+![Waza workflow demo](assets/waza-demo.gif)
+
 Waza turns an explicitly selected AI workflow and the current Git diff into a reusable Agent Skill for VS Code. It generates `SKILL.md`, a deterministic script, and a test definition, then shows a preview and validates the script before saving.
 
 ## Features
