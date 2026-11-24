@@ -2,7 +2,7 @@
   "name": "waza",
   "displayName": "Waza - One-Click Skill Compiler",
   "description": "Compile an explicitly selected AI workflow into a reusable Agent Skill with a deterministic script, preview, and validation gates.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "ShunsukeF",
   "license": "Apache-2.0",
   "repository": {
