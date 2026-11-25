@@ -12,6 +12,14 @@ describe('redactSecrets', () => {
     expect(result.text).not.toContain('secret-value');
     expect(result.text).not.toContain('password=hidden');
   });
+
+  it('redacts JSON-quoted keys, AWS and Slack tokens, and private key blocks', () => {
+    const input = '{"password": "hunter2", "api_key": "abc123"}\nAKIAABCDEFGHIJKLMNOP\nxoxb-1234567890-abcdef\n-----BEGIN RSA PRIVATE KEY-----\nMIIB\n-----END RSA PRIVATE KEY-----';
+    const result = redactSecrets(input);
+
+    for (const secret of ['hunter2', 'abc123', 'AKIAABCDEFGHIJKLMNOP', 'xoxb-1234567890-abcdef', 'MIIB']) expect(result.text).not.toContain(secret);
+    expect(result.count).toBe(5);
+  });
 });
 
 describe('inspectGeneratedScript', () => {

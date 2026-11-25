@@ -5,8 +5,11 @@ const secretPatterns: Array<{ pattern: RegExp; replacement: SecretReplacement }>
   { pattern: /\bgh[pousr]_[A-Za-z0-9_]{16,}\b/g, replacement: '[REDACTED_GITHUB_TOKEN]' },
   { pattern: /\bgithub_pat_[A-Za-z0-9_]{16,}\b/g, replacement: '[REDACTED_GITHUB_TOKEN]' },
   { pattern: /\bsk-[A-Za-z0-9_-]{16,}\b/g, replacement: '[REDACTED_API_KEY]' },
-  { pattern: /\b(?:api[_-]?key|access[_-]?token|client[_-]?secret|password|passwd)\s*[:=]\s*['\"][^'\"\r\n]+['\"]/gi, replacement: (match) => `${match.split(/[:=]/, 1)[0]}=[REDACTED]` },
-  { pattern: /\b(?:api[_-]?key|access[_-]?token|client[_-]?secret|password|passwd)\s*[:=]\s*(?!\[REDACTED\])[^\s,;]+/gi, replacement: (match: string) => `${match.split(/[:=]/, 1)[0]}=[REDACTED]` },
+  { pattern: /\b(?:AKIA|ASIA)[0-9A-Z]{16}\b/g, replacement: '[REDACTED_AWS_KEY]' },
+  { pattern: /\bxox[abprs]-[A-Za-z0-9-]{10,}\b/g, replacement: '[REDACTED_SLACK_TOKEN]' },
+  { pattern: /-----BEGIN [A-Z ]*PRIVATE KEY-----[\s\S]*?-----END [A-Z ]*PRIVATE KEY-----/g, replacement: '[REDACTED_PRIVATE_KEY]' },
+  { pattern: /\b(?:api[_-]?key|access[_-]?token|client[_-]?secret|password|passwd)['\"]?\s*[:=]\s*['\"][^'\"\r\n]+['\"]/gi, replacement: (match) => `${match.split(/[:=]/, 1)[0]}=[REDACTED]` },
+  { pattern: /\b(?:api[_-]?key|access[_-]?token|client[_-]?secret|password|passwd)['\"]?\s*[:=]\s*(?!\[REDACTED\])[^\s,;]+/gi, replacement: (match: string) => `${match.split(/[:=]/, 1)[0]}=[REDACTED]` },
 ];
 
 export interface RedactionResult {
